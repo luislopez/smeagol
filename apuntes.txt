@@ -1,0 +1,17 @@
+vesta
+zimbra
+owncloud
+
+---------------------------------------
+extjs
+angularjs
+
+
+Programacion imperativa
+
+function  xxxx( arg1,arg2)
+
+
+Programacion funcional
+
+funtion ( arg)   // arg es una funcion anonima u objeto anonimo
