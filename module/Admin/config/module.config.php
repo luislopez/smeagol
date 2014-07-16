@@ -28,6 +28,11 @@ return array(
             ),
         ),
     ),
+    'service_manager' => array(
+        'factories' => array(
+            'admin_menus' => 'Admin\Navigation\Service\AdminMenus'
+        ),
+    ),
     'view_manager' => array(
         'template_path_stack' => array(
             'admin' => __DIR__ . '/../view',
