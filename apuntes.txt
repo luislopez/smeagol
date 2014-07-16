@@ -15,3 +15,29 @@ function  xxxx( arg1,arg2)
 Programacion funcional
 
 funtion ( arg)   // arg es una funcion anonima u objeto anonimo
+
+
+openxava
+
+patron MDA (Model Driven Architec)
+
+sap
+
+EDA (Event Driven Architect)
+
+openxava
+
+Dvelum (IDE Online + etc)
+
+
+Herramientas abstractas (Scaffolding )
+
+Vesta Control Panel
+
+phplist (SPAM)
+
+__DIR__ (ruta del directorio contenedor del script actual que estas ejecutando a nivel del S.O)
+__FILE__ (ruta absoluta a nivel del S.O)
+
+PATH_SEPARATOR   (win=; lin=:)
+DIRECTORY_SEPARATOR (win=\ lin=/)
