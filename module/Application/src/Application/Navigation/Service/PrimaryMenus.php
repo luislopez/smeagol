@@ -17,92 +17,92 @@ class PrimaryMenus extends DefaultNavigationFactory {
 
             // esto se generará despues desde la base de datos
             $configuration['navigation'][$this->getName()] = array(
-                array(
-                    'label' => 'Inicio',
-                    'route' => 'home'
-                ),
-                array(
-                    'label' => 'Nosotros',
-                    'route' => 'node',
-                    'params' => array(
-                        'id' => '1',
-                        'link' => '/nosotros',
-                        'node_type' => 'page',
-                    ),
-                ),
-                array(
-                    'label' => 'Servicios',
-                    'route' => 'page',
-                    'action' => 'servicios',
-                    'pages' => array(
-                        'programacion-web' => array(
-                            'label' => 'Programación Web',
-                            'route' => 'page',
-                            'action' => 'programacion-web'
+                        array(
+                            'label' => 'Inicio',
+                            'route' => 'home'
                         ),
-                        'desarrollo-portales' => array(
-                            'label' => 'Desarrollo de Portales',
+                        array(
+                            'label' => 'Nosotros',
+                            'route' => 'node',
+                            'params' => array(
+                                'id' => '1',
+                                'link' => '/nosotros',
+                                'node_type' => 'page',
+                            ),
+                        ),
+                        array(
+                            'label' => 'Servicios',
                             'route' => 'page',
-                            'action' => 'desarrollo-portales',
+                            'action' => 'servicios',
                             'pages' => array(
-                                'drupal' => array(
-                                    'label' => 'Drupal',
+                                'programacion-web' => array(
+                                    'label' => 'Programación Web',
                                     'route' => 'page',
-                                    'action' => 'drupal'
+                                    'action' => 'programacion-web'
                                 ),
-                                'joomla' => array(
-                                    'label' => 'Joomla',
+                                'desarrollo-portales' => array(
+                                    'label' => 'Desarrollo de Portales',
                                     'route' => 'page',
-                                    'action' => 'joomla'
+                                    'action' => 'desarrollo-portales',
+                                    'pages' => array(
+                                        'drupal' => array(
+                                            'label' => 'Drupal',
+                                            'route' => 'page',
+                                            'action' => 'drupal'
+                                        ),
+                                        'joomla' => array(
+                                            'label' => 'Joomla',
+                                            'route' => 'page',
+                                            'action' => 'joomla'
+                                        ),
+                                        'wordpress' => array(
+                                            'label' => 'Wordpress',
+                                            'route' => 'page',
+                                            'action' => 'wordpress'
+                                        )
+                                    )
+                                )
+                            ),
+                        ),
+                        array(
+                            'label' => 'Soluciones',
+                            'route' => 'page',
+                            'action' => 'soluciones',
+                            'pages' => array(
+                                'smeagol' => array(
+                                    'label' => 'Smeagol CMS',
+                                    'route' => 'page',
+                                    'action' => 'smeagol'
                                 ),
-                                'wordpress' => array(
-                                    'label' => 'Wordpress',
+                                'intranets' => array(
+                                    'label' => 'Intranets',
                                     'route' => 'page',
-                                    'action' => 'wordpress'
+                                    'action' => 'intranets'
                                 )
                             )
-                        )
-                    ),
-                ),
-                array(
-                    'label' => 'Soluciones',
-                    'route' => 'page',
-                    'action' => 'soluciones',
-                    'pages' => array(
-                        'smeagol' => array(
-                            'label' => 'Smeagol CMS',
-                            'route' => 'page',
-                            'action' => 'smeagol'
                         ),
-                        'intranets' => array(
-                            'label' => 'Intranets',
+                        array(
+                            'label' => 'Soporte',
                             'route' => 'page',
-                            'action' => 'intranets'
-                        )
-                    )
-                ),
-                array(
-                    'label' => 'Soporte',
-                    'route' => 'page',
-                    'action' => 'soporte',
-                    'pages' => array(
-                        'standar' => array(
-                            'label' => 'Standar',
-                            'route' => 'page',
-                            'action' => 'standar'
+                            'action' => 'soporte',
+                            'pages' => array(
+                                'standar' => array(
+                                    'label' => 'Standar',
+                                    'route' => 'page',
+                                    'action' => 'standar'
+                                ),
+                                'premium' => array(
+                                    'label' => 'Intranets',
+                                    'route' => 'page',
+                                    'action' => 'premium'
+                                )
+                            )
                         ),
-                        'premium' => array(
-                            'label' => 'Intranets',
+                        array(
+                            'label' => 'Contactenos',
                             'route' => 'page',
-                            'action' => 'premium'
+                            'action' => 'contactenos',
                         )
-                    )
-                ),
-                array(
-                    'label' => 'Contactenos',
-                    'route' => 'page',
-                    'action' => 'contactenos',
-                )
             );
 
             if (!isset($configuration['navigation'])) {
