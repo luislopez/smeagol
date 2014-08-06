@@ -41,3 +41,39 @@ __FILE__ (ruta absoluta a nivel del S.O)
 
 PATH_SEPARATOR   (win=; lin=:)
 DIRECTORY_SEPARATOR (win=\ lin=/)
+
+---------------------------------------------------------------------------
+
+0 = nodo raiz
+1 = nodo padre
+
+orderid = es el orden en el que estan ordenados los nodos (menu)
+
+
+
+
+zfcdatagrid // componente para construir datagrid en zf2
+
+http://samsonasik.wordpress.com/
+
+
+
+Recursos
+mvc: module.controller.action
+
+Permisos
+
+role -> resource
+
+ejemplo:
+admin  -> admin.*
+editor	-> admin.pages.*
+member	-> admin.pages.edit:owner
+
+
+///  Se deberia incorporar Reglas de negocios
+///  Java DROOLS, OpenRules
+
+
+
+El recurso en Zend puede ser cualquier String
