@@ -53,6 +53,20 @@ return array(
                     ),
                 ),
             ),
+             'soap' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/soap[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Soap',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
             //Alias de Urls
             'node' => array(
                 'type' => 'Application\Router\Alias',
@@ -99,6 +113,7 @@ return array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Auth' => 'Application\Controller\AuthController',
             'Application\Router\Alias' => 'Application\Router\Alias',
+            'Application\Controller\Soap' => 'Application\Controller\SoapController',
         ),
     ),
     'view_manager' => array(

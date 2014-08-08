@@ -1,3 +1,10 @@
+Para compartir la sesiones entre servidores
+---------------------------------------
+Memcached
+Redis
+
+
+
 vesta
 zimbra
 owncloud
@@ -77,3 +84,12 @@ member	-> admin.pages.edit:owner
 
 
 El recurso en Zend puede ser cualquier String
+
+
+Tiempo Real - Web Sockets
+
+Sockets tradicionales
+React PHP
+Jetty
+Node JS
+Twissted
