@@ -6,22 +6,22 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Authentication\AuthenticationService;
 use Zend\View\Model\ViewModel;
 
-class PageController extends AbstractActionController {
+class NoticiasController extends AbstractActionController {
 
     /**
-     * Page
-     * @var Admin\Model\Page
+     * Noticias
+     * @var Admin\Model\Noticias
      */
     protected $_page;
 
     /**
-     * Get Page object
-     * @return Admin\Model\Page
+     * Get Noticias object
+     * @return Admin\Model\Noticias
      */
-    public function getPage() {
+    public function getNoticias() {
         if (!$this->_page) {
             $sm = $this->getServiceLocator();
-            $this->_page = $sm->get('Admin\Model\Page');
+            $this->_page = $sm->get('Admin\Model\Noticias');
         }
 
         return $this->_page;
@@ -29,7 +29,7 @@ class PageController extends AbstractActionController {
 
     public function indexAction() {
         return new ViewModel(array(
-            'pages' => $this->getpage()->fetchAllPages(),
+            'pages' => $this->getpage()->fetchAllNoticiass(),
         ));
     }
 
@@ -50,8 +50,8 @@ class PageController extends AbstractActionController {
                         'controller' => 'page', 'action' => 'index'
             ));
         }
-        $pageTable = $this->getPage();
-        $page = $pageTable->getPage($id);
+        $pageTable = $this->getNoticias();
+        $page = $pageTable->getNoticias($id);
 
         if ($page) {
 
@@ -73,7 +73,7 @@ class PageController extends AbstractActionController {
                 $page->modified = date("Y-m-d H:i:s");
 
                 // Guardamos los datos
-                $pageTable->savePage($page);
+                $pageTable->saveNoticias($page);
 
 
                 // Redireccionamos la petición
@@ -98,7 +98,7 @@ class PageController extends AbstractActionController {
     }
 
     public function addAction() {
-        $page = $this->getPage();
+        $page = $this->getNoticias();
         // Obtenemos el ViewHelper HeadScript para agregar un javacript en la
         // sección head
         // del html; este script controlará la petición en Ajax
@@ -126,7 +126,7 @@ class PageController extends AbstractActionController {
                 $page->modified = date("Y-m-d H:i:s");
                 $page->node_type_id = 1;
                 // Guardamos los datos
-                $page->savePage($page);
+                $page->saveNoticias($page);
 
                 // Redireccionamos la petición
                 return $this->redirect()->toRoute('admin', array(
@@ -165,7 +165,7 @@ class PageController extends AbstractActionController {
 
             if ($del == 'SI') {
                 $id = (int) $request->getPost('id');
-                $this->getPage()->deletePage($id);
+                $this->getNoticias()->deleteNoticias($id);
             }
 
             // Redirect to list of pages
@@ -177,7 +177,7 @@ class PageController extends AbstractActionController {
 
         return array(
             'id' => $id,
-            'page' => $this->getPage()->getPage($id)
+            'page' => $this->getNoticias()->getNoticias($id)
         );
     }
 

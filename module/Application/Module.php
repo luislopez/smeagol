@@ -20,6 +20,10 @@ use Smeagol\Model\User;
 use Smeagol\Model\UserTable;
 use Smeagol\Model\Menu;
 use Smeagol\Model\MenuTable;
+use Smeagol\Model\Role;
+use Smeagol\Model\RoleTable;
+use Smeagol\Model\RolePermission;
+use Smeagol\Model\RolePermissionTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Authentication\AuthenticationService;
@@ -29,6 +33,7 @@ use Zend\Permissions\Acl\Resource\GenericResource;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface {
 
+    //.. Ahora modificamos el método onBootStrap
     public function onBootstrap(MvcEvent $e) {
         $e->getApplication()->getServiceManager()->get('translator');
         $eventManager = $e->getApplication()->getEventManager();
@@ -54,28 +59,41 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface {
                 $userRole = $identity->role_type;
             }
 
-            // Datos se obtendrán de la base de datos
-            $roles = array('guest', 'member', 'editor', 'admin');
-            $permissions = array(
-                'admin' => array('mvc:admin.*', 'mvc:application.*'),
-                'guest' => array('mvc:application.*'),
-                'editor' => array('mvc:application.*', 'mvc:admin.index.index', 'mvc:admin.pages.*'),
-                'member' => array(
-                    'mvc:application.*',
-                    'mvc:admin.index.index',
-                    'mvc:admin.page.index',
-                    'mvc:admin.page.add',
-                    'mvc:admin.page.edit:owner',
-                    'mvc:admin.page.delete:owner',
-                )
-            );
+            $roleTable = $e->getApplication()->getServiceManager()->get('Smeagol\Model\RoleTable');
+            $roles = $roleTable->fetchAll();
 
+            // Datos se obtendrán de la base de datos
+            // $roles = array('guest', 'member', 'editor', 'admin');
+
+            $rolePermissionTable = $e->getApplication()->getServiceManager()->get('Smeagol\Model\RolePermissionTable');
+            $roles_permissions = $rolePermissionTable->fetchAll();
+
+            $permissions = array();
+            foreach ($roles_permissions as $role_permission) {
+                $permissions[$role_permission->role_type][] = $role_permission->permission_resource;
+            }
+            /*
+              $permissions = array(
+              'admin' => array('mvc:admin.*', 'mvc:application.*'),
+              'guest' => array('mvc:application.*'),
+              'editor' => array('mvc:application.*', 'mvc:admin.index.index',
+              'mvc:admin.page.*'),
+              'member' => array(
+              'mvc:application.*',
+              'mvc:admin.index.index',
+              'mvc:admin.page.index',
+              'mvc:admin.page.add',
+              'mvc:admin.page.edit:owner',
+              'mvc:admin.page.delete:owner',
+              )
+              );
+             */
             // Instanciando la clase Acl
             $acl = new Acl();
 
             // Agregando los roles
             foreach ($roles as $role) {
-                $acl->addRole(new GenericRole($role));
+                $acl->addRole(new GenericRole($role->type));
             }
 
             // Obteniendo los módulos del sistema
@@ -216,6 +234,28 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface {
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new User());
             return new TableGateway('user', $dbAdapter, null, $resultSetPrototype);
+        },
+                'Smeagol\Model\RoleTable' => function($sm) {
+            $tableGateway = $sm->get('RoleTableGateway');
+            $table = new RoleTable($tableGateway);
+            return $table;
+        },
+                'RoleTableGateway' => function ($sm) {
+            $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+            $resultSetPrototype = new ResultSet();
+            $resultSetPrototype->setArrayObjectPrototype(new Role());
+            return new TableGateway('role', $dbAdapter, null, $resultSetPrototype);
+        },
+                'Smeagol\Model\RolePermissionTable' => function($sm) {
+            $tableGateway = $sm->get('RolePermissionTableGateway');
+            $table = new RolePermissionTable($tableGateway);
+            return $table;
+        },
+                'RolePermissionTableGateway' => function ($sm) {
+            $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+            $resultSetPrototype = new ResultSet();
+            $resultSetPrototype->setArrayObjectPrototype(new RolePermission());
+            return new TableGateway('role_permission', $dbAdapter, null, $resultSetPrototype);
         },
                 'Smeagol\Model\MenuTable' => function($sm) {
             $tableGateway = $sm->get('MenuTableGateway');

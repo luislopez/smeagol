@@ -19,7 +19,7 @@ $(document).ready(function() {
             user = $("#username").val();
             pass = $("#password").val();
 
-            $.post('/auth/process', {username: user, password: pass},
+            $.post('/application/auth/process', {username: user, password: pass},
             function(data) {
                 if (!data.resultado) {
                     alert(data.mensaje);

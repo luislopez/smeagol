@@ -147,5 +147,4 @@ class MenuTable {
         }
         return $menuTree;
     }
-
 }

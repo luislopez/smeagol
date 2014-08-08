@@ -25,9 +25,8 @@ return array(
             'Navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory'
         )
     ),
-    // definiendo los árboles de menús
     'navigation' => array(
-        'admin' => array(),
-        'default' => array(),
+        'admin' => array(),      // Menus de Administracion
+        'default' => array(),    // Menus Primarios
     ),
 );

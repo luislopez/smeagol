@@ -1,5 +1,4 @@
 <?php
-
 namespace Smeagol\Model;
 
 class Menu
